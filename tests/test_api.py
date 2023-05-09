@@ -24,6 +24,6 @@ async def test_api_gen_pages():
     res = await api.translate_pages(pages=pages, r=(167, 168))
 
     for r in res:
-        api.generate_page('167', r, os.path.join(os.getcwd(), 'output', f'167.html'))
+        api.generate_page(r[0]+1, r[1], os.path.join(os.getcwd(), 'output', f'{r[0]+1}.html'))
 
     assert len(res) == 1

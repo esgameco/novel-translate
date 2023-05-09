@@ -10,6 +10,9 @@ python -m venv venv
 # DO -> Activate venv
 pip install -r requirements.txt
 
+cp .env.template .env
+# Change RSC_KEY and RSC_LOC to azure key and location of resource
+
 python main.py {novel url} {novel name}
 ```
 
