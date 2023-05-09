@@ -10,7 +10,7 @@ python -m venv venv
 # DO -> Activate venv
 pip install -r requirements.txt
 
-python main.py {novel name} {novel url}
+python main.py {novel url} {novel name}
 ```
 
 ## TODO

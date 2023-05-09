@@ -12,9 +12,11 @@ if __name__ == '__main__':
     api = API()
 
     url = os.getenv('TEST_URL')
+    name = os.getenv('TEST_NAME')
     if len(sys.argv) > 1:
         url = sys.argv[1]
+        name = sys.argv[2]
 
-    res = asyncio.run(api.gen_book(url, 'ancestor_above', (167, 200)))
+    res = asyncio.run(api.gen_book(url, name, (0, 10)))
 
     print(res)
