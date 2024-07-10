@@ -1,6 +1,8 @@
 .env
 
-/output
+/input
+
+/secrets
 /venv
 /.pytest_cache
 /.vscode

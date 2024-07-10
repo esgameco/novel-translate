@@ -30,7 +30,7 @@ class Generator:
         pass
 
     def generate_html(self, input: dict, out_file: str):
-        content = '<br />'.join([f'<p>{x}</p>' for x in input['content'].split('\n')])
+        content = ''.join([f'<p>{x}</p>' for x in input['content'].split('\n')])
         h = template.replace('REPLACE_TITLE', str(input['title'])).replace('REPLACE_CONTENT', content).replace('REPLACE_PREVIOUS', str(int(input['title'])-1)).replace('REPLACE_NEXT', str(int(input['title'])+1))
         with open(out_file, 'w', encoding="utf-8") as f:
             f.write(h)

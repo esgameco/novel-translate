@@ -6,7 +6,7 @@ from src import Scraper
 async def test_scrape_get_raw():
     scraper = Scraper()
 
-    res = await scraper.get_raw('https://www.uukanshu.com/b/120636/28238.html')
+    res = await scraper.get_raw('https://69shux.com/txt/3554/3004146')
 
     assert res
 
@@ -14,6 +14,6 @@ async def test_scrape_get_raw():
 async def test_scrape_get_pages():
     scraper = Scraper()
 
-    res = await scraper.get_pages('https://www.uukanshu.com/b/120636/')
+    res = await scraper.get_pages('https://69shux.com/book/3554/index.html')
 
     assert res

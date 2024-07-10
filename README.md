@@ -1,6 +1,6 @@
 # novel-translate
 
-A python script that will scrape a site for raws, translate using an Azure api, then output to files. 
+A python script that will scrape a site for raws, translate using AI, then output to files. 
 
 ## Setup
 
@@ -11,9 +11,9 @@ python -m venv venv
 pip install -r requirements.txt
 
 cp .env.template .env
-# Change RSC_KEY and RSC_LOC to azure key and location of resource
+# Change 
 
-python main.py {novel url} {novel name}
+python main.py {novel url} {novel name} {page start} {page end}
 ```
 
 ## TODO
@@ -21,3 +21,9 @@ python main.py {novel url} {novel name}
 1. [x] Scrape site for raws
 2. [x] Translate raws using API
 3. [x] Output to files
+
+### Future
+
+1. [ ] Extract characters with Haiku
+2. [ ] Translate with Sonnet / Opus
+3. [ ] Verify with Haiku
