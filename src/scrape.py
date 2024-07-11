@@ -7,8 +7,9 @@ from typing import List
 class Scraper:
     def __init__(self, proxy: str=None) -> None:
         self.proxy = proxy
-        self.headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0"}
-        
+        # self.headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0"}
+        self.headers = {}
+
     async def get_raw(self, url: str, offline=True) -> str:
         async with httpx.AsyncClient(proxies=self.proxy, headers=self.headers) as client:
             try:
@@ -39,7 +40,7 @@ class Scraper:
                     return ''
             elif 'shuba' in url:
                 try:
-                    r = re.findall(r'<br>\s*&emsp;&emsp;.*', res.content.decode('gb18030'), re.MULTILINE)
+                    r = re.findall(r'&emsp;&emsp;(.*?)\n', res.content.decode('gb18030'))
                 except Exception:
                     return ''
             elif 'twkan' in url:
@@ -97,6 +98,9 @@ class Scraper:
                 r = ['https://www.22biqu.com' + x for x in r if 'biqu' in x]
                 r = list(set(r))
             elif 'shuba' in url:
+                # with open('./input/' + url.split('/')[4] + '.html', 'r', encoding='utf-8') as f:
+                #     inp = f.read()
+                #     r = re.findall(r'<li data-num=".*?"><a href="(.*?)">.*?</a>', inp)
                 r = re.findall(r'<li data-num=".*?"><a href="(.*?)">.*?</a>', res.content.decode('gb18030'))
                 if len(r) <= 1:
                     r = re.findall(r'<li data-num=".*?"><a href="(.*?)">.*?</a>', res.content.decode('utf-8'))
