@@ -40,7 +40,7 @@ class Scraper:
                     return ''
             elif 'shuba' in url:
                 try:
-                    r = re.findall(r'&emsp;&emsp;(.*?)\n', res.content.decode('gb18030'))
+                    r = re.findall(r'<p>(.*?)</p>', res.content.decode('gb18030'))
                 except Exception:
                     return ''
             elif 'twkan' in url:
