@@ -42,10 +42,10 @@ class API:
             if len(res) > 5:
                 texts = ''
                 if not provider:
-                    texts = await self.translate.translate_text(res, random.choice(self._claude_keys), 'claude-3-haiku-20240307')
+                    texts = await self.translate.translate_text(res, random.choice(self._claude_keys), 'claude-3-5-sonnet-20240620')
                     for i in range(5):
                         if len(texts) < len(res)/3:
-                            texts = await self.translate.translate_text(res, random.choice(self._claude_keys), 'claude-3-haiku-20240307')
+                            texts = await self.translate.translate_text(res, random.choice(self._claude_keys), 'claude-3-5-sonnet-20240620')
                 elif provider == 'openai':
                     texts = await self.translate.translate_text_openai(res)
                     if len(texts) < len(res)/3:

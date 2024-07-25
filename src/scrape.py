@@ -28,7 +28,7 @@ class Scraper:
                     r = re.findall(r'<p>(.*?)</p>', res.content.decode('gb18030'))
                 except Exception: 
                     return ''
-            if 'xsbiquge' in url:
+            elif 'xsbiquge' in url:
                 try: 
                     r = re.findall(r'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p class="content_detail">\r\n                        (.*?)\r\n                        \r\n                    </p>', res.content.decode('utf-8'))
                 except Exception: 
@@ -89,7 +89,7 @@ class Scraper:
                 r = re.findall(r'<li><a href="(.*?)"', res.content.decode('gb18030'))
                 r = [url.replace('index.html', '') + x for x in r if '.html' in x]
                 r = list(set(r))
-            if 'xsbiquge' in url:
+            elif 'xsbiquge' in url:
                 r = re.findall(r'<dd>\r\n                    <a href="(.*?)">', res.content.decode('utf-8'))
                 r = ['http://www.xsbiquge.la' + x for x in r if 'book' in x]
                 r = list(set(r))
@@ -102,8 +102,11 @@ class Scraper:
                 #     inp = f.read()
                 #     r = re.findall(r'<li data-num=".*?"><a href="(.*?)">.*?</a>', inp)
                 r = re.findall(r'<li data-num=".*?"><a href="(.*?)">.*?</a>', res.content.decode('gb18030'))
+                r = list(set(r))
+                r.sort()
                 if len(r) <= 1:
                     r = re.findall(r'<li data-num=".*?"><a href="(.*?)">.*?</a>', res.content.decode('utf-8'))
+                    r = list(set(r))
             elif 'twkan' in url:
                 with open('./input/' + url.split('/')[4] + '.html', 'r', encoding='utf-8') as f:
                     inp = f.read()
