@@ -36,39 +36,39 @@ class API:
         
         return json.dumps({'keys': working_keys}, indent=4)
 
-    async def translate_page(self, url: str, provider=None) -> str:
+    async def translate_page(self, url: str, model: str) -> str:
         res = await self.scraper.get_raw(url)
         try:
             if len(res) > 5:
                 texts = ''
-                if not provider:
-                    texts = await self.translate.translate_text(res, random.choice(self._claude_keys), 'claude-3-5-sonnet-20240620')
-                    for i in range(5):
-                        if len(texts) < len(res)/3:
-                            texts = await self.translate.translate_text(res, random.choice(self._claude_keys), 'claude-3-5-sonnet-20240620')
-                elif provider == 'openai':
-                    texts = await self.translate.translate_text_openai(res)
+                # if not provider:
+                texts = await self.translate.translate_text(res, random.choice(self._claude_keys), model=model)
+                for i in range(5):
                     if len(texts) < len(res)/3:
-                        texts = await self.translate.translate_text_deepl(res)
-                elif provider == 'deepl':
-                    texts = await self.translate.translate_text_deepl(res)
+                        texts = await self.translate.translate_text(res, random.choice(self._claude_keys), model=model)
+                # elif provider == 'openai':
+                #     texts = await self.translate.translate_text_openai(res)
+                #     if len(texts) < len(res)/3:
+                #         texts = await self.translate.translate_text_deepl(res)
+                # elif provider == 'deepl':
+                #     texts = await self.translate.translate_text_deepl(res)
                 return texts
         except Exception:
             await asyncio.sleep(5)
             pass
         return ''
     
-    async def translate_pages(self, pages: List[str], r: tuple=None) -> List[str]:
+    async def translate_pages(self, pages: List[str], r: tuple=None, model='claude-3-5-sonnet-20240620') -> List[str]:
         res = []
         if not r:
             r = (0, len(pages))
         if len(r) == 2:
             for i in range(r[0], r[1]):
-                res.append((i, await self.translate_page(pages[i])))
+                res.append((i, await self.translate_page(pages[i], model=model)))
                 print(f'Finished translating chapter {i+1} with Claude.')
         else:
             for i in r:
-                res.append((i, await self.translate_page(pages[i]))) # 
+                res.append((i, await self.translate_page(pages[i], model=model))) # 
                 print(f'Finished translating chapter {i+1} with Claude.')
         return res
     
@@ -81,11 +81,15 @@ class API:
     def generate_page(self, title: str, text: str, out_file: str):
         self.generator.generate_html({'title': title, 'content': text}, out_file=out_file)
     
-    async def gen_book(self, url: str, output_loc: str, r: tuple=None):
+    async def gen_book(self, url: str, output_loc: str, r: tuple=None, model=None):
         pages = await self.get_pages(url=url)
         print('Finished scraping pages from the website.')
 
-        translated = await self.translate_pages(pages=pages, r=r)
+        translated = {}
+        if model:
+            translated = await self.translate_pages(pages=pages, r=r, model=model)
+        else:
+            translated = await self.translate_pages(pages=pages, r=r)
         print('Finished translating.')
 
         for t in translated:
