@@ -14,12 +14,12 @@ if __name__ == '__main__':
     url = os.getenv('TEST_URL')
     name = os.getenv('TEST_NAME')
     model = 'claude-3-5-sonnet-20240620'
-    args = sys.argv[3:5]
+    args = sys.argv[4:]
     if len(sys.argv) > 1:
         url = sys.argv[1]
         name = sys.argv[2]
         if len(sys.argv) > 4:
-            model = sys.argv[5]
+            model = sys.argv[3]
 
     if len(args) == 2:
         print(f'Starting translation of {name} from chapter {int(args[0])+1} to chapter {int(args[1])}')
