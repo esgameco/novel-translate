@@ -43,8 +43,9 @@ class API:
                 texts = ''
                 # if not provider:
                 texts = await self.translate.translate_text(res, random.choice(self._claude_keys), model=model)
-                for i in range(5):
+                for i in range(8):
                     if len(texts) < len(res)/3:
+                        print("Trying again...")
                         texts = await self.translate.translate_text(res, random.choice(self._claude_keys), model=model)
                 # elif provider == 'openai':
                 #     texts = await self.translate.translate_text_openai(res)
