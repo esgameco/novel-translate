@@ -20,7 +20,7 @@ class API:
         self.base_url = base_url if base_url else os.getenv('BASE_URL')
     
     def _get_claude_keys(self) -> List[str]:
-        with open(os.path.join(os.getcwd(), 'secrets', 'anthropic_3.json'), 'r') as file:
+        with open(os.path.join(os.getcwd(), 'secrets', 'anthropic_4.json'), 'r') as file:
             data = json.load(file)
 
             return data['keys']
