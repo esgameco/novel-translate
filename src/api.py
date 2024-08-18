@@ -20,7 +20,7 @@ class API:
         self.base_url = base_url if base_url else os.getenv('BASE_URL')
     
     def _get_claude_keys(self) -> List[str]:
-        with open(os.path.join(os.getcwd(), 'secrets', 'anthropic_4.json'), 'r') as file:
+        with open(os.path.join(os.getcwd(), 'secrets', 'anthropic_5.json'), 'r') as file:
             data = json.load(file)
 
             return data['keys']
@@ -29,7 +29,7 @@ class API:
         working_keys = []
         for key in self._claude_keys:
             try:
-                res = await self.translate.translate_text("testtest", key, model='claude-3-haiku-20240307')
+                res = await self.translate.translate_text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non tincidunt nulla, in consequat ante. Nulla rhoncus, justo ac ullamcorper iaculis, erat orci gravida nisl, eu facilisis lorem nunc sed dolor. Phasellus egestas ornare bibendum. Maecenas at dapibus urna, quis posuere leo. Vestibulum quis velit ultricies, tristique erat quis, finibus purus. Aliquam quis dictum mauris. Quisque id cursus eros. Nulla eget rhoncus lectus. Duis molestie, metus et laoreet tristique, nunc tellus consectetur neque, eu dapibus arcu dui in erat. Suspendisse scelerisque quis diam eu congue. Sed iaculis hendrerit tellus vel congue. Maecenas non nisi vitae eros sollicitudin aliquam. Aliquam porta libero eu iaculis pellentesque. Nunc vitae metus vel velit commodo ultricies. Proin ut congue felis, sit amet mollis lacus. Donec eget libero venenatis, luctus ex ac, ultrices velit. Quisque ac lectus eu magna facilisis blandit. Praesent eget mattis dui. Phasellus auctor lectus in elit faucibus sollicitudin. In pulvinar turpis in neque ultricies placerat. Morbi gravida felis vel feugiat facilisis. Nullam id ultricies nulla, in mollis nibh. Pellentesque lobortis orci nisi, sit amet convallis tellus lobortis non. Fusce nec arcu metus. Phasellus mauris elit, iaculis eu lorem ac, aliquam laoreet turpis. Aenean dapibus sapien massa, eu tincidunt risus scelerisque dictum. Aliquam. ", key, model='claude-3-haiku-20240307')
                 working_keys.append(key)
             except Exception:
                 pass
