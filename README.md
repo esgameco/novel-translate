@@ -13,7 +13,8 @@ pip install -r requirements.txt
 cp .env.template .env
 # Change 
 
-python main.py {novel url} {novel name} {page start} {page end}
+python main.py {novel url} {novel name} {claude model} {page start} {page end}
+# use either claude-3-haiku-20240307 or claude-3-5-sonnet-20240620
 ```
 
 ## TODO
