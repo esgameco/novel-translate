@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 if __name__ == '__main__':
-    api = API(proxy=os.getenv('PROXY'))
+    api = API() # proxy=os.getenv('PROXY')
 
     url = os.getenv('TEST_URL')
     name = os.getenv('TEST_NAME')
