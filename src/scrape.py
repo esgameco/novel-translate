@@ -105,7 +105,7 @@ class Scraper:
                 r = list(set(r))
                 r.sort()
                 if len(r) <= 1:
-                    r = re.findall(r'<li data-num=".*?"><a href="(.*?)">.*?</a>', res.content.decode('utf-8'))
+                    r = re.findall(r'<li data-num=".*?"><a href="(.*?)">.*?</a>', res.content.decode('gb18030'))
                     r = list(set(r))
             elif 'twkan' in url:
                 with open('./input/' + url.split('/')[4] + '.html', 'r', encoding='utf-8') as f:
