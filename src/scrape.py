@@ -38,7 +38,7 @@ class Scraper:
                     r = re.findall(r'<p>(.*?)</p>', res.content.decode('utf-8'))
                 except Exception:
                     return ''
-            elif '69shu' in url:
+            elif '69shuba' in url:
                 try:
                     r = re.findall(r'<p>(.*?)</p>', res.content.decode('gb18030'))
                 except Exception:
@@ -97,7 +97,7 @@ class Scraper:
                 r = re.findall(r'<li><a href="(.*?)">.*?</a></li>', res.content.decode('utf-8'))
                 r = ['https://www.22biqu.com' + x for x in r if 'biqu' in x]
                 r = list(set(r))
-            elif '69shu' in url:
+            elif '69shuba' in url:
                 # with open('./input/' + url.split('/')[4] + '.html', 'r', encoding='utf-8') as f:
                 #     inp = f.read()
                 #     r = re.findall(r'<li data-num=".*?"><a href="(.*?)">.*?</a>', inp)
