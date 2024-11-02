@@ -18,8 +18,8 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         url = sys.argv[1]
         name = sys.argv[2]
-        if len(sys.argv) > 4:
-            model = sys.argv[3]
+        # if len(sys.argv) > 4:
+        #     model = sys.argv[3]
 
     if len(args) == 2:
         print(f'Starting translation of {name} from chapter {int(args[0])+1} to chapter {int(args[1])}')
